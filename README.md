@@ -36,3 +36,24 @@ The system is based on an **ER Model** with:
 - **Database:** PostgreSQL
 - **UI:** HTML/CSS + JavaScript or Python Flask (based on preference)
 - **SQL Features:** Joins, Views, Triggers, Aggregate Functions
+
+## 🔒 Assumptions / Constraints
+- Each crime is uniquely identified by **crime_id**.  
+- A suspect can be involved in **multiple FIRs**.  
+- Each FIR must be linked to **exactly one crime**, and optionally to a suspect.  
+- Officers may handle **multiple FIRs**.  
+- Status of a crime is limited to **'Open'** or **'Closed'**.  
+- Officer names and suspect names are **not unique**.
+
+## Project Structure
+```bash
+crime_file_mgmt/
+├── app.py
+├── templates/
+│   ├── index.html
+│   ├── add_fir.html
+│   └── view_crimes.html
+├── static/
+│   └── style.css
+├── database.sql
+└── requirements.txt
