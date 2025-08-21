@@ -1,22 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Add FIR</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Add FIR</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body class="container mt-4">
-  <h2>File New FIR</h2>
-  <form method="POST">
-    <label>Crime ID:</label>
-    <select name="crime_id" class="form-control">
-      {% for c in crimes %}
-        <option value="{{ c[0] }}">{{ c[0] }}</option>
-      {% endfor %}
-    </select><br>
-    <input type="text" name="suspect_id" class="form-control" placeholder="Suspect ID"><br>
-    <input type="text" name="officer_id" class="form-control" placeholder="Officer ID"><br>
-    <textarea name="remarks" class="form-control" placeholder="Remarks"></textarea><br>
-    <input type="submit" value="Submit" class="btn btn-success">
-  </form>
+<body>
+    <h1>Add FIR</h1>
+    <form method="POST">
+        <label for="crime_id">Select Crime:</label>
+        <select name="crime_id" required>
+            {% for crime in crimes %}
+                <option value="{{ crime[0] }}">{{ crime[1] }} – {{ crime[2] }} ({{ crime[3] }})</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="suspect_id">Select Suspect:</label>
+        <select name="suspect_id" required>
+            {% for suspect in suspects %}
+                <option value="{{ suspect[0] }}">{{ suspect[1] }} – Age {{ suspect[2] }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="officer_id">Select Officer:</label>
+        <select name="officer_id" required>
+            {% for officer in officers %}
+                <option value="{{ officer[0] }}">{{ officer[1] }} – {{ officer[2] }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="remarks">Remarks:</label><br>
+        <textarea name="remarks" rows="4" cols="50" required></textarea><br><br>
+
+        <button type="submit">Submit FIR</button>
+    </form>
+
+    <br>
+    <a href="{{ url_for('index') }}">← Back to Home</a>
 </body>
 </html>
